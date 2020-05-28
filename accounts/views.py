@@ -6,9 +6,11 @@ class StudentListView(generics.ListAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
+
 class StudentDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
+
 
 class StudentCreateView(generics.CreateAPIView):
     queryset = Student.objects.all()
@@ -19,9 +21,11 @@ class MentorListView(generics.ListAPIView):
     queryset = Mentor.objects.all()
     serializer_class = MentorSerializer
 
+
 class MentorDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Mentor.objects.all()
     serializer_class = MentorSerializer
+
 
 class MentorCreateView(generics.CreateAPIView):
     queryset = Mentor.objects.all()
