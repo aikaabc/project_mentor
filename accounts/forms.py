@@ -1,6 +1,19 @@
 from django import forms
-from django.contrib.auth.models import User
-from .models import Profile
+from django.contrib.auth.models import Student
+from .models import Mentor
+from allauth.socialaccount.forms import SignupForm
+
+class CustomSignupForm(SignupForm):
+    email = forms.EmailField(required=True)
+    password = forms.CharField(widget=forms.PasswordInput)t Name')
+    
+    def signup(self, request, user):
+        user.first_name = forms.CharField(max_length=30, label='First Name')
+        user.last_name = forms.CharField(max_length=30, label='Last Name')
+        user.save()
+        return user
+
+
 
 class LoginForm(forms.Form):
     email = forms.EmailField(required=False)

@@ -44,10 +44,12 @@ SITE_ID = 1
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        'APP': {
-            'client_id': '123',
-            'secret': '456',
-            'key': ''
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
         }
     }
 }
@@ -89,9 +91,6 @@ AUTHENTICATION_BACKENDS = [
 WSGI_APPLICATION = 'mentor.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -99,9 +98,14 @@ DATABASES = {
     }
 }
 
+ACCOUNT_FORMS = {
+    'signup': 'mentor.forms.CustomSignupForm',
+}
 
-# Password validation
-# https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
+SOCIALACCOUNT_FORMS = {
+    'login': 'allauth.socialaccount.forms.DisconnectForm',
+    'signup': 'allauth.socialaccount.forms.SignupForm',
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -118,10 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.11/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -133,44 +133,13 @@ USE_L10N = True
 USE_TZ = True
 
 ACCOUNT_ADAPTER = ('allauth.account.adapter.DefaultAccountAdapter')
-
-ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
-
 ACCOUNT_AUTHENTICATION_METHOD = ('email', 'password')
-ACCOUNT_EMAIL_REQUIRED=True
-
-ACCOUNT_CONFIRM_EMAIL_ON_GET = True 
-
-# ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = settings.LOGIN_URL !!!
-
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = None
-
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
-
-ACCOUNT_EMAIL_CONFIRMATION_HMAC = True
-
-ACCOUNT_EMAIL_REQUIRED = False 
-
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
-
-# ACCOUNT_EMAIL_SUBJECT_PREFIX (=”[Site] “) !!!!!!!
-
-ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
-
-ACCOUNT_FORMS = ({'login': 'accounts.forms.LoginForm'}) #!!!!!
-
-ACCOUNT_LOGOUT_ON_GET = False
-
-ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = False
-
-ACCOUNT_LOGIN_ON_PASSWORD_RESET = False
-
-
-
-
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
+ACCOUNT_EMAIL_COMFIRMATION_EXPIRE_DAYS = 1
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400
+ACCOUNT_LOGOUT_REDIRECT_URL = 'accounts/login'
+LOGIN_REDIRECT_URL = '/accounts/email/'
 
 STATIC_URL = '/static/'
