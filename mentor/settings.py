@@ -37,21 +37,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.auth0',
-    'allauth.socialaccount.providers.discord',
-    'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.github',
-    'allauth.socialaccount.providers.gitlab',
     'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.instagram',
-    'allauth.socialaccount.providers.mailru',
-    'allauth.socialaccount.providers.microsoft',
-    'allauth.socialaccount.providers.reddit',
-    'allauth.socialaccount.providers.trello',
-    'allauth.socialaccount.providers.twitch',
-    'allauth.socialaccount.providers.twitter',
-    # 'allauth.socialaccount.providers.yandex',
-    'allauth.socialaccount.providers.windowslive',
 ]
 
 SITE_ID = 1
